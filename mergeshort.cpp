@@ -1,10 +1,11 @@
 #include <iostream>
 using namespace std;
 
-// create main array & temporary array
+// [COMMIT 1]: Setup global variables
 int arr[20], B[20];
-// n is array input size
 int n;
+
+// [COMMIT 2 & 3]: Input function with validation and element loop
 void input() {
     while (true) {
         cout << "Masukkan Panjang element array : ";
@@ -16,7 +17,7 @@ void input() {
             cout << "\nMaksimal panjang array adalah 20" << endl;
         }
     }
-}
+
     cout << "\n-----------------------" << endl;
     cout << "Inputkan Isi element array" << endl;
     cout << "-----------------------" << endl;
@@ -25,17 +26,22 @@ void input() {
         cout << "Array index ke-" << i << " : ";
         cin >> arr[i];
     }
-    void mergeSort(int low, int high) {
+}
+
+// [COMMIT 4-9]: Merge Sort core logic (Recursive & Merging)
+void mergeSort(int low, int high) {
+    // Base case: jika elemen hanya satu
     if (low >= high) {
         return;
     }
-}
-// Di dalam mergeSort
+
+    // Mencari titik tengah dan membagi array
     int mid = (low + high) / 2;
 
     mergeSort(low, mid);
     mergeSort(mid + 1, high);
-    // Di dalam mergeSort (step 4)
+
+    // Proses Merging (Penggabungan)
     int i = low;
     int j = mid + 1;
     int k = low;
@@ -50,20 +56,29 @@ void input() {
         }
         k++;
     }
+
+    // Memasukkan sisa elemen dari sisi kanan
     while (j <= high) {
         B[k] = arr[j];
         j++;
         k++;
     }
+
+    // Memasukkan sisa elemen dari sisi kiri
     while (i <= mid) {
         B[k] = arr[i];
         i++;
         k++;
     }
+
+    // Menyalin data dari array sementara (B) balik ke array utama (arr)
     for (int x = low; x <= high; x++) {
         arr[x] = B[x];
     }
-    void output() {
+}
+
+// [COMMIT 10]: Output and Main Orchestration
+void output() {
     cout << "\nData setelah diurutkan (Merge Sort): ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
@@ -73,7 +88,9 @@ void input() {
 
 int main() {
     input();
-    mergeSort(0, n - 1);
+    if (n > 0) {
+        mergeSort(0, n - 1);
+    }
     output();
     return 0;
 }
