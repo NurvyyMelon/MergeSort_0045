@@ -60,3 +60,6 @@ void input() {
         i++;
         k++;
     }
+    for (int x = low; x <= high; x++) {
+        arr[x] = B[x];
+    }
