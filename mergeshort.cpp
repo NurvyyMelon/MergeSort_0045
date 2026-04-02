@@ -55,3 +55,8 @@ void input() {
         j++;
         k++;
     }
+    while (i <= mid) {
+        B[k] = arr[i];
+        i++;
+        k++;
+    }
